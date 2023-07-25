@@ -33,7 +33,7 @@ const Header: React.FC = () => {
       <div className="headerDiv">
          <h3> 세상의 모든 이슈를 내 PC 안에 </h3>
       </div>
-      <h1 className="animate__animated animate__pulse">NEWS</h1>
+      <h1 className="animate__animated animate__zoomIn">NEWS</h1>
       {flashPositions.map((position, index) => (
         <FlashImage key={index} x = {position.x} y ={position.y} />
       ))}
@@ -47,11 +47,10 @@ const HeaderBox = styled.header`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    padding-left: 5%;
     max-height: 250px;
     font-family: 'TTWanjudaedunsancheB';
     border-bottom: solid 2px #d6d6d6;
+    background-color: #eae7de;
     
     .headerDiv{
       display: flex;
@@ -72,7 +71,7 @@ const HeaderBox = styled.header`
     }
 
     h1{
-      margin-top: 90px;
+      margin-top: 120px;
       font-size: 45px;
     }
 `;
