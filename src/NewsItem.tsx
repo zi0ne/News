@@ -3,17 +3,22 @@ import styled from "styled-components";
 
 const NewsItemBlock = styled.div`
   display: flex;
-  .thumbnail {
+  flex-direction: column;
+  .newsBox {
     img {
       margin-right: 1rem;
-      width: 160px;
-      height: 160px;
+      width: 300px;
+      height: 300px;
       object-fit: cover;
     }
   }
   .contents {
-    h2 {
+    display: flex;
+    flex-direction: row;
+    h3 {
       margin: 0;
+      padding-left: 8px;
+      line-height: 2;
       a {
         color: block;
       }
@@ -22,7 +27,6 @@ const NewsItemBlock = styled.div`
       margin: 0;
       line-height: 1.5;
       margin-top: 0.5rem;
-      white-space: normal;
     }
   }
   & + & {
@@ -32,29 +36,29 @@ const NewsItemBlock = styled.div`
 
 interface ArticleProps {
   title: string;
-  description: string;
   url: string;
   urlToImage: string;
+  category: string
 }
 
 const NewsItem: React.FC<{ article: ArticleProps }> = ({ article }) => {
-  const { title, description, url, urlToImage } = article;
+  const { title, url, urlToImage, category } = article;
   return (
     <NewsItemBlock>
       {urlToImage && (
-        <div className="thumbnail">
+        <div className="newsBox">
           <a href={url} target="_blank" rel="noopener noreferrer">
             <img src={urlToImage} alt="thumbnail" />
           </a>
         </div>
       )}
       <div className="contents">
-        <h2>
+        <p>{category}</p>
+        <h3>
           <a href={url} target="_blank" rel="noopener noreferrer">
             {title}
           </a>
-        </h2>
-        <p>{description}</p>
+        </h3>
       </div>
     </NewsItemBlock>
   );
@@ -75,9 +79,9 @@ const NewsListBlock = styled.div`
 
 const sampleArticle = {
   title: "제목",
-  description: "내용",
+  category: "카테고리",
   url: "https://google.com",
-  urlToImage: "https://via.placeholder.com/160",
+  urlToImage: "https://via.placeholder.com/300",
 };
 
 const NewsList: React.FC = () => {

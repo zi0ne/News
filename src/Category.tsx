@@ -90,6 +90,9 @@ const Wrap = styled.div`
 `;
 
 const Tap = styled.div<TapProps>`
+    @media screen and (max-width: 680px){
+        font-size: 0.7em;
+    }
     cursor: pointer;
     margin-right: 10px;
     color: ${props => props.selected ? '#ff6b00' : 'black'};
@@ -104,6 +107,10 @@ const Search = styled.div`
     display: flex;
     flex-direction: row;
     cursor: pointer;
+
+    @media screen and (max-width: 1100px){
+        display: none;
+    }
 
     input{
         width: 230px;
