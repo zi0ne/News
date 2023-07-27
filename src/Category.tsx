@@ -75,7 +75,7 @@ const CategoryBox = styled.div`
     align-items: center;
     border-bottom: solid 2px #3d3d3d;
     font-family: 'TTWanjudaedunsancheB';
-    font-size: 20px;
+    font-size: 18px;
 `;
 
 const Wrap = styled.div`
