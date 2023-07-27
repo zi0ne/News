@@ -24,6 +24,8 @@ const Header: React.FC = () => {
     setFlashPositions(position);
   };
 
+
+  // 플래시 랜덤 위치
   useEffect(() => {
     randomPosition();
   }, []);
@@ -48,6 +50,7 @@ const HeaderBox = styled.header`
     justify-content: center;
     align-items: center;
     max-height: 250px;
+    transform: translateY(0);
     font-family: 'TTWanjudaedunsancheB';
     border-bottom: solid 2px #d6d6d6;
     background-color: #eae7de;
