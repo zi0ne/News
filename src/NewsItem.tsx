@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+
 const NewsItemBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,21 +35,22 @@ const NewsItemBlock = styled.div`
   }
 `;
 
-interface ArticleProps {
+export interface ArticleProps {
   title: string;
   url: string;
   urlToImage: string;
-  category: string
+  category: string;
 }
 
 const NewsItem: React.FC<{ article: ArticleProps }> = ({ article }) => {
   const { title, url, urlToImage, category } = article;
+  console.log(article);
   return (
     <NewsItemBlock>
       {urlToImage && (
         <div className="newsBox">
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <img src={urlToImage} alt="thumbnail" />
+            <img src={urlToImage} alt="newsImg" />
           </a>
         </div>
       )}
@@ -64,37 +66,4 @@ const NewsItem: React.FC<{ article: ArticleProps }> = ({ article }) => {
   );
 };
 
-const NewsListBlock = styled.div`
-  box-sizing: border-box;
-  padding-bottom: 3rem;
-  width: 768px;
-  margin: 0 auto;
-  margin-top: 2rem;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-`;
-
-const sampleArticle = {
-  title: "제목",
-  category: "카테고리",
-  url: "https://google.com",
-  urlToImage: "https://via.placeholder.com/300",
-};
-
-const NewsList: React.FC = () => {
-  return (
-    <NewsListBlock>
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-    </NewsListBlock>
-  );
-};
-
-export default NewsList;
+export default NewsItem;
