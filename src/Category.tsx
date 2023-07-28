@@ -19,7 +19,7 @@ const Category : React.FC = () => {
         },
         {
             name: 'science',
-            text: '💡과학'
+            text: '🌳환경'
         },
         {
             name: 'entertainment',
@@ -73,7 +73,7 @@ const CategoryBox = styled.div`
     height: 70px;
     justify-content: center;
     align-items: center;
-    border-bottom: solid 2px #3d3d3d;
+    border-bottom: solid 1px #3d3d3d;
     font-family: 'TTWanjudaedunsancheB';
     font-size: 18px;
 `;

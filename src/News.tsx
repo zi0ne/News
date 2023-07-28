@@ -14,10 +14,11 @@ const News: React.FC = () => {
         // axios 라이브러리로 apic call 
         try {
           const response = await axios.get(
-            `https://newsapi.org/v2/top-headlines?country=kr&apiKey=${process.env.REACT_APP_API_KEY}`,
+            `https://my-json-server.typicode.com/zi0ne/TODO_DB/news`,
           );
           // 응답 data state 저장
-          setData(response.data.articles);
+          setData(response.data);
+          console.log(data);
         } catch (e) {
           console.log(e)
         }
@@ -57,15 +58,8 @@ const News: React.FC = () => {
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  padding-bottom: 3rem;
-  width: 768px;
-  margin: 0 auto;
-  margin-top: 2rem;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  background-color: #eae7de;
+  padding: 0;
 `;
 
   export default News;

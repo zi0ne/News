@@ -1,33 +1,48 @@
 import React from "react";
 import styled from "styled-components";
+import Category from "./Category";
 
-
+ 
 const NewsItemBlock = styled.div`
   display: flex;
   flex-direction: column;
+  font-family:'TTWanjunuricheR';
+  background-color: #ffffff;
+  transition: background-color 0.3s ease; 
+  width: 370px;
+  height: 420px;
+  border: solid 2px #3d3d3d;
+  margin: 0;
+
   .newsBox {
     img {
-      margin-right: 1rem;
-      width: 300px;
+      width: 370px;
       height: 300px;
       object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease; 
+    }
+    
+    img:hover {
+      filter: grayscale(0%); 
     }
   }
   .contents {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    height: 70px;
+    justify-content: space-between;
+    span{
+      margin: 7px;
+    }
     h3 {
       margin: 0;
-      padding-left: 8px;
+      padding: 8px;
+      font-size: 16px;
       line-height: 2;
       a {
         color: block;
       }
-    }
-    p {
-      margin: 0;
-      line-height: 1.5;
-      margin-top: 0.5rem;
     }
   }
   & + & {
@@ -38,29 +53,29 @@ const NewsItemBlock = styled.div`
 export interface ArticleProps {
   title: string;
   url: string;
-  urlToImage: string;
+  img: string;
+  published: string;
   category: string;
 }
 
 const NewsItem: React.FC<{ article: ArticleProps }> = ({ article }) => {
-  const { title, url, urlToImage, category } = article;
+  const { title, url, img, published, category } = article;
   console.log(article);
   return (
     <NewsItemBlock>
-      {urlToImage && (
+      {img && (
         <div className="newsBox">
           <a href={url} target="_blank" rel="noopener noreferrer">
-            <img src={urlToImage} alt="newsImg" />
+            <img src={img} alt="newsImg" />
           </a>
         </div>
       )}
       <div className="contents">
-        <p>{category}</p>
-        <h3>
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            {title}
-          </a>
-        </h3>
+        <h3>{title}</h3>
+        <div>
+          <span>{published}</span>
+          <span>{category}</span>
+        </div>
       </div>
     </NewsItemBlock>
   );
