@@ -59,6 +59,15 @@ const News: React.FC = () => {
   box-sizing: border-box;
   background-color: #eae7de;
   padding: 0;
+
+  td{
+    filter: grayscale(100%);
+    transition: filter 0.3s ease; 
+  }
+
+  td:hover{
+    filter: grayscale(0%);
+  }
 `;
 
   export default News;

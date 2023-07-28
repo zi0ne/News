@@ -14,19 +14,13 @@ const NewsItemBlock = styled.div`
   border: solid 2px #3d3d3d;
   margin: 0;
 
-  .newsBox {
-    img {
-      width: 370px;
-      height: 300px;
-      object-fit: cover;
-      filter: grayscale(100%);
-      transition: filter 0.3s ease; 
-    }
-    
-    img:hover {
-      filter: grayscale(0%); 
-    }
+
+  img {
+    width: 370px;
+    height: 300px;
+    object-fit: cover;
   }
+
   .contents {
     display: flex;
     flex-direction: column;
@@ -35,19 +29,22 @@ const NewsItemBlock = styled.div`
     span{
       margin: 7px;
     }
-    h3 {
-      margin: 0;
-      padding: 8px;
-      font-size: 16px;
-      line-height: 2;
-      a {
-        color: block;
-      }
-    }
+
+  h3 {
+    margin: 0;
+    padding: 8px;
+    font-size: 16px;
+    line-height: 2;
   }
-  & + & {
-    margin-top: 3rem;
+
+  a {
+    text-decoration-line: none; 
+    color:  #ff6b00; 
   }
+  span{
+    color: #a9a9a9
+  }
+  
 `;
 
 export interface ArticleProps {
@@ -69,14 +66,17 @@ const NewsItem: React.FC<{ article: ArticleProps }> = ({ article }) => {
             <img src={img} alt="newsImg" />
           </a>
         </div>
-      )}
-      <div className="contents">
-        <h3>{title}</h3>
-        <div>
-          <span>{published}</span>
-          <span>{category}</span>
+      )}           
+        <div className="contents">
+          <a href={url} target="_blank" rel="noopener noreferrer"> 
+            <h3>{title}</h3>
+          </a>
+          <div>
+            <span>{published}</span>
+            <span>{category}</span>
+          </div>
         </div>
-      </div>
+          
     </NewsItemBlock>
   );
 };
