@@ -18,7 +18,6 @@ const News: React.FC = () => {
           );
           // 응답 data state 저장
           setData(response.data);
-          console.log(data);
         } catch (e) {
           console.log(e)
         }
@@ -26,7 +25,7 @@ const News: React.FC = () => {
       
       getNews();
 
-    }, );
+    }, [data]);
 
     const rows = [];
     for (let i = 0; i < Math.ceil(data.length / 3); i++) {
