@@ -26,7 +26,7 @@ const News: React.FC = () => {
       
       getNews();
 
-    }, []);
+    }, );
 
     const rows = [];
     for (let i = 0; i < Math.ceil(data.length / 3); i++) {
