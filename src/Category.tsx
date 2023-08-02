@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 interface TapProps {
     selected: boolean;
   }
 
 const Category : React.FC = () => {
-    const [select,setSelect] = useState('all')
+    const [select,setSelect] = useState('')
 
     const categories = [
         {
-            name: 'all',
+            name: '',
             text: '전체'
         },
         {
@@ -42,19 +43,20 @@ const Category : React.FC = () => {
     const handleClick = (name: string) => {
         setSelect(name);
     };
-
     
     return(
         <CategoryBox>
             <Wrap>
                 {categories.map(tap => (
-                    <Tap
-                    key={tap.name}
-                    onClick = {() => handleClick(tap.name)}
-                    selected = {select === tap.name}
-                    >
-                    {tap.text}
-                    </Tap>
+                    <StyledLink to={`/${tap.name}`} key={tap.name}>
+                        <Tap
+                        key={tap.name}
+                        onClick = {() => handleClick(tap.name)}
+                        selected = {select === tap.name}
+                        >
+                        {tap.text}
+                        </Tap>
+                    </StyledLink>
                 ))}
                 <Search>
                 <div className="inputSearch">
@@ -89,11 +91,16 @@ const Wrap = styled.div`
     font-size: 20px;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const Tap = styled.div<TapProps>`
     @media screen and (max-width: 680px){
         font-size: 0.7em;
     }
     cursor: pointer;
+    text-decoration: none;
     margin-right: 10px;
     color: ${props => props.selected ? '#ff6b00' : 'black'};
     transition: font-size 0.2s ease;

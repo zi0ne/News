@@ -35,6 +35,7 @@ const NewsItemBlock = styled.div`
     padding: 8px;
     font-size: 16px;
     line-height: 2;
+    color:  #ff6b00;
   }
 
   a {

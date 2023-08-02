@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import NewsItem from './NewsItem';
-import { ArticleProps } from './NewsItem';
+import NewsItem from '../NewsItem';
+import { ArticleProps } from '../NewsItem';
 
-const News: React.FC = () => {
+const ScienceNews: React.FC = () => {
     
     const [data, setData] = useState<ArticleProps[]>([]);
 
@@ -18,7 +18,6 @@ const News: React.FC = () => {
           );
           // 응답 data state 저장
           setData(response.data);
-          console.log(data);
         } catch (e) {
           console.log(e)
         }
@@ -26,12 +25,24 @@ const News: React.FC = () => {
       
       getNews();
 
-    }, [data]);
+    }, []);
 
-    const rows = [];
-    for (let i = 0; i < Math.ceil(data.length / 3); i++) {
-      rows.push(data.slice(i * 3, (i + 1) * 3));
-    }
+    const rows: ArticleProps[][] = [];
+    let tempRow: ArticleProps[] = [];
+  
+    data.forEach((article, index) => {
+      if (article.category === "환경") {
+        if (tempRow.length < 3) {
+          tempRow.push(article);
+        }
+  
+        if (tempRow.length === 3 || index === data.length - 1) {
+          rows.push(tempRow);
+          tempRow = [];
+        }
+      }
+    });
+  
 
     return (
         <NewsListBlock>
@@ -71,4 +82,4 @@ const News: React.FC = () => {
   }
 `;
 
-  export default News;
+  export default ScienceNews;
