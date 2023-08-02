@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import NewsItem from './NewsItem';
 import { ArticleProps } from './NewsItem';
 
-const News: React.FC = () => {
+const News: React.FC <{ searchQuery: string }> = ({ searchQuery }) => {
     
     const [data, setData] = useState<ArticleProps[]>([]);
 
@@ -26,11 +26,15 @@ const News: React.FC = () => {
       
       getNews();
 
-    }, [data]);
-
+    }, []);
+    
+    const filteredData = searchQuery
+    ? data.filter((article) => article.title.includes(searchQuery))
+    : data;
+    
     const rows = [];
-    for (let i = 0; i < Math.ceil(data.length / 3); i++) {
-      rows.push(data.slice(i * 3, (i + 1) * 3));
+    for (let i = 0; i < Math.ceil(filteredData.length / 3); i++) {
+      rows.push(filteredData.slice(i * 3, (i + 1) * 3));
     }
 
     return (

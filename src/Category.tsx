@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
 interface TapProps {
     selected: boolean;
   }
 
-const Category : React.FC = () => {
-    const [select,setSelect] = useState('')
+const Category : React.FC<{ searchQuery: string , setSearchQuery : (query: string)  => void}> = ({ setSearchQuery, searchQuery }) => {
+    const [select,setSelect] = useState('');
 
     const categories = [
         {
@@ -42,7 +42,17 @@ const Category : React.FC = () => {
 
     const handleClick = (name: string) => {
         setSelect(name);
+        setSearchQuery(name);
     };
+
+    const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelect('');
+        setSearchQuery(event.target.value);
+    }
+
+    const handleSearchButtonClick = () => {
+        setSearchQuery(select); 
+      }
     
     return(
         <CategoryBox>
@@ -60,10 +70,12 @@ const Category : React.FC = () => {
                 ))}
                 <Search>
                 <div className="inputSearch">
-                    <input placeholder="검색어를 입력하세요"/>
+                    <input placeholder="검색어를 입력하세요"
+                            value={searchQuery}
+                            onChange={handleSearchInput}/>
                 </div>
-                <div className="button">🔎</div>
-                </Search>
+                <div className="button" onClick={handleSearchButtonClick}>🔎</div>
+                </Search> 
             </Wrap>
         </CategoryBox>
     );
