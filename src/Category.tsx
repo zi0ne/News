@@ -68,14 +68,18 @@ const Category : React.FC<{ searchQuery: string , setSearchQuery : (query: strin
                         </Tap>
                     </StyledLink>
                 ))}
-                <Search>
+                {select === '' ? 
+                (<Search>
                 <div className="inputSearch">
                     <input placeholder="검색어를 입력하세요"
                             value={searchQuery}
                             onChange={handleSearchInput}/>
                 </div>
                 <div className="button" onClick={handleSearchButtonClick}>🔎</div>
-                </Search> 
+                </Search>) :
+                null
+                }
+                 
             </Wrap>
         </CategoryBox>
     );

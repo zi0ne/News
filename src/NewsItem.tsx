@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
-
+import { useInView } from "react-intersection-observer";
  
 const NewsItemBlock = styled.div`
   display: flex;
@@ -58,10 +57,11 @@ export interface ArticleProps {
 
 const NewsItem: React.FC<{ article: ArticleProps }> = ({ article }) => {
   const { title, url, img, published, category } = article;
-  console.log(article);
+  const [ref, inView] = useInView ({ triggerOnce: true});
+
   return (
-    <NewsItemBlock>
-      {img && (
+    <NewsItemBlock ref={ref}>
+      {inView &&img && (
         <div className="newsBox">
           <a href={url} target="_blank" rel="noopener noreferrer">
             <img src={img} alt="newsImg" />

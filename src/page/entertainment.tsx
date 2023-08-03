@@ -18,6 +18,7 @@ const EntertainmentNews: React.FC = () => {
           );
           // 응답 data state 저장
           setData(response.data);
+          console.log(data);
         } catch (e) {
           console.log(e)
         }
@@ -65,6 +66,10 @@ const EntertainmentNews: React.FC = () => {
     );
   };
   
+  
+
+  
+
   const NewsListBlock = styled.div`
   display: flex;
   justify-content: center;

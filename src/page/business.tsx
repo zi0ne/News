@@ -10,39 +10,37 @@ const BusinessNews: React.FC = () => {
 
     // 첫 렌더링에 뉴스 가져오기
     useEffect( () => {
-        const getNews = async () => {
-        // axios 라이브러리로 apic call 
-        try {
-          const response = await axios.get(
-            `https://my-json-server.typicode.com/zi0ne/TODO_DB/news`,
-          );
-          // 응답 data state 저장
-          setData(response.data);
-        } catch (e) {
-          console.log(e)
-        }
-      };
-      
-      getNews();
+      const getNews = async () => {
+      // axios 라이브러리로 apic call 
+      try {
+        const response = await axios.get(
+          `https://my-json-server.typicode.com/zi0ne/TODO_DB/news`,
+        );
+        // 응답 data state 저장
+        setData(response.data);
+        console.log(data);
+      } catch (e) {
+        console.log(e)
+      }
+    };
+    
+    getNews();
 
-    }, []);
-
+  }, []);
+  
     const rows: ArticleProps[][] = [];
     let tempRow: ArticleProps[] = [];
   
     data.forEach((article, index) => {
       if (article.category === "경제") {
-        if (tempRow.length < 3) {
           tempRow.push(article);
-        }
-  
-        if (tempRow.length === 3 || index === data.length - 1) {
-          rows.push(tempRow);
-          tempRow = [];
-        }
+      }
+
+      if (tempRow.length === 3 || index === data.length - 1) {
+        rows.push(tempRow);
+        tempRow = [];
       }
     });
-  
 
     return (
         <NewsListBlock>
