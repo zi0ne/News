@@ -26,7 +26,7 @@ const News: React.FC <{ searchQuery: string }> = ({ searchQuery }) => {
       
       getNews();
 
-    }, []);
+    }, [data]);
     
     const filteredData = searchQuery
     ? data.filter((article) => article.title.includes(searchQuery))

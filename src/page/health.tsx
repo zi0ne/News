@@ -25,7 +25,7 @@ const HealthNews: React.FC = () => {
       
       getNews();
 
-    }, []);
+    }, [data]);
 
     const rows: ArticleProps[][] = [];
     let tempRow: ArticleProps[] = [];
