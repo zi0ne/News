@@ -31,10 +31,12 @@ const News: React.FC <{ searchQuery: string }> = ({ searchQuery }) => {
     const filteredData = searchQuery
     ? data.filter((article) => article.title.includes(searchQuery))
     : data;
+
+    const itemsRow = window.innerWidth < 660 ? 1 : (window.innerWidth < 1100 ? 2: 3);
     
     const rows = [];
-    for (let i = 0; i < Math.ceil(filteredData.length / 3); i++) {
-      rows.push(filteredData.slice(i * 3, (i + 1) * 3));
+    for (let i = 0; i < Math.ceil(filteredData.length / itemsRow); i++) {
+      rows.push(filteredData.slice(i * itemsRow, (i + 1) * itemsRow));
     }
 
     return (
@@ -47,8 +49,8 @@ const News: React.FC <{ searchQuery: string }> = ({ searchQuery }) => {
                     <NewsItem article={article} />
                   </td>
                 ))}
-                {row.length < 3 &&
-                  Array.from({ length: 3 - row.length }, (_, index) => (
+                {row.length < itemsRow &&
+                  Array.from({ length: itemsRow - row.length }, (_, index) => (
                     <td key={index}></td>
                   ))}
               </tr>

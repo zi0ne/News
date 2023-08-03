@@ -113,7 +113,10 @@ const StyledLink = styled(Link)`
 
 const Tap = styled.div<TapProps>`
     @media screen and (max-width: 680px){
-        font-size: 0.7em;
+        font-size: 0.8em;
+        &:hover {
+            font-size: 0.9em; 
+          }
     }
     cursor: pointer;
     text-decoration: none;

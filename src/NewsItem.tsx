@@ -13,7 +13,6 @@ const NewsItemBlock = styled.div`
   border: solid 2px #3d3d3d;
   margin: 0;
 
-
   img {
     width: 370px;
     height: 300px;
